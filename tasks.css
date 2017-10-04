@@ -2,3 +2,8 @@
   text-decoration: line-through;
   color: grey;
 }
+
+.card{
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
