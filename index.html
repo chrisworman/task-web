@@ -1,11 +1,16 @@
 <!doctype html>
 <html ng-app="taskApp" lang="en">
   <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
-    <script src="../config.js"></script>
-    <script src="lists-index-controller.js"></script>
-    <link rel="stylesheet" href="../tasks.css">
-
+    <link rel="stylesheet" href="app.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-route.js"></script>
+    <script src="app.module.js"></script>
+    <script src="app.config.js"></script>
+    <script src="list/list.module.js"></script>
+    <script src="list/list.component.js"></script>
+    <script src="tasks/tasks.module.js"></script>
+    <script src="tasks/tasks.component.js"></script>
+    
     <!-- Bootstrap Tags-->
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -19,16 +24,13 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="https://use.fontawesome.com/88ab21e0e9.js"></script>
 
+    <base href="/">
+
   </head>
 
   <body class="container">
-    <h2>Task Lists</h2>
-    <div ng-controller="ListIndexController as listCtrl">
-      <ul>
-        <li ng-repeat="list in listCtrl.lists">
-          <a ng-href="/lists/{{list.id}}">{{list.name}}</a>
-        </li>
-      </ul>
-    </div>
+
+    <div ng-view></div>
+
   </body>
 </html>
