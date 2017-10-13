@@ -1,30 +1,25 @@
+<!-- TODO: Remember to add title to model -->
+<h2>List Name Goes Here</h2>
 
-<div>
+<!-- Tasks -->
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="task in $ctrl.tasks">
+    <label class="checkbox">
+      <input type="checkbox">
+      <span>{{task.text}}</span>
+    </label>
+    <button type="button" class="btn btn-sm btn-default pull-right" ng-click="$ctrl.deleteTask(task.id)">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+  </li>
+</ul>
 
-  <!-- remember to add title to model -->
-  <h2>List Name Goes Here</h2>
-
-  <!-- tasks -->
-  <div class="card">
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item" ng-repeat="task in $ctrl.tasks">
-        <label class="checkbox">
-          <input type="checkbox">
-          <span>{{task.text}}</span>
-        </label>
-      </li>
-    </ul>
+<!-- Add a task to the list -->
+<form ng-submit="$ctrl.addTask()">
+  <div class="input-group">
+    <input type="text" ng-model="$ctrl.taskText"  size="30" placeholder="add new task here" class="form-control">
+    <span class="input-group-btn">
+      <input class="btn btn-primary" type="submit" value="+add">
+    </span>
   </div>
-
-  <!-- <form ng-submit="taskList.addTask()">
-  <form>
-    <div class="input-group">
-      <input type="text" ng-model="$ctrl.taskText"  size="30" placeholder="add new task here" class="form-control">
-      <span class="input-group-btn">
-        <input class="btn btn-primary" type="submit" value="+add">
-      </span>
-    </div>
-  </form>
--->
-
-</div>
+</form>

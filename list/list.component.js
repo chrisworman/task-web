@@ -17,7 +17,7 @@ angular.
       };
 
       self.getLists();
-      
+
       self.addList = function (){
 
         var newList = {
@@ -25,11 +25,25 @@ angular.
         };
 
         $http.post('//172.16.1.70:5000/lists', JSON.stringify(newList)).then(function(response){
-          alert('Success');
           self.getLists();
+          self.listText = '';
         }, function(response){
           alert('There was an error');
         });
+      };
+
+      self.deleteList = function(listId, listName){
+
+        if(confirm('Are you sure you want to delete your ' + listName + " list?")){
+
+          $http.delete('//172.16.1.70:5000/lists/' + listId).then(function(response){
+              self.getLists();
+            }, function(response){
+              alert('error');
+          });
+
+        }
+
       };
 
     }]

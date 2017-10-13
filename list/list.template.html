@@ -1,8 +1,11 @@
 <h2>Task Lists</h2>
 <div>
-  <ul>
-    <li ng-repeat="list in $ctrl.lists">
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="list in $ctrl.lists">
       <a ng-href="#!/lists/{{list.id}}">{{list.name}}</a>
+      <button type="button" class="btn btn-sm btn-default pull-right" ng-click="$ctrl.deleteList(list.id, list.name)">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </button>
     </li>
   </ul>
 </div>

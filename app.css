@@ -11,3 +11,11 @@
 body{
   background-color: blue;
 }
+
+ul{
+  padding: 25px 0;
+}
+
+li:hover{
+  background-color: #f3f3f3;
+}
