@@ -38,12 +38,45 @@ angular
 
           //proceed to delete task
           $http.delete('//172.16.1.70:5000/tasks/' + taskId).then(function(response){
-            alert('Successfully deleted task!');
             self.getTasks();
           }, function(response){
             //error
             alert('Error occurred trying to delete this task');
           });
+        }
+
+      };
+
+      self.editTask = function(taskId, taskName){
+
+          self.taskId = taskId;
+
+          //show modal
+          $('#editTask').modal('show');
+
+      };
+
+      self.saveTask = function(){
+
+        if(self.taskEditText){
+
+          var task = {
+            list_id : self.listId,
+            text: self.taskEditText
+          };
+
+          //proceed to delete task
+          $http.put('//172.16.1.70:5000/tasks/' + self.taskId, JSON.stringify(task)).then(function(response){
+            self.getTasks();
+            self.taskEditText = '';
+            $('#editTask').modal('hide');
+          }, function(response){
+            //error
+            alert('Error occurred trying to update this task');
+          });
+        }
+        else{
+          alert('Task Name cannot be empty');
         }
 
       };

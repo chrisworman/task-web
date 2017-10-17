@@ -19,3 +19,7 @@ ul{
 li:hover{
   background-color: #f3f3f3;
 }
+
+.alert{
+  margin-top: 15px;
+}
