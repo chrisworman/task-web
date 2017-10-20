@@ -2,20 +2,21 @@ angular
   .module('tasks')
   .component('tasks', {
     templateUrl: 'tasks/tasks.template.html',
-    controller: ['$http', '$routeParams', function TasksController($http, $routeParams){
-      this.listId = $routeParams.id;
+    controller: ['$http', 'listService', function TasksController($http, listService){
 
-      //call rest api for list tasks
       var self = this;
 
+      listService.onListClicked(function(listId){
+        self.listId = listId;
+        self.getTasks();
+      });
+
       self.getTasks = function(){
-        $http.get('//172.16.1.70:5000/tasks?list_id=' + this.listId).then(function(response) {
+        $http.get('//172.16.1.70:5000/tasks?list_id=' + self.listId).then(function(response) {
           console.log('web api /tasks?list_id= called');
           self.tasks = response.data;
         });
       };
-
-      self.getTasks();
 
       self.addTask = function(){
 
@@ -62,10 +63,10 @@ angular
 
           var task = {
             list_id : self.listId,
-            text: self.taskEditText
+            text: self.taskEditText,
+            marked: false     //added temporarily until db fix can be added 
           };
 
-          //proceed to delete task
           $http.put('//172.16.1.70:5000/tasks/' + self.taskId, JSON.stringify(task)).then(function(response){
             self.getTasks();
             self.taskEditText = '';

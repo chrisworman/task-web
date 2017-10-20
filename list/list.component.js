@@ -2,9 +2,11 @@ angular.
   module('list').
   component('list', {
     templateUrl: 'list/list.template.html',
-    controller: [ '$http', function ListController($http) {
+    controller: [ '$http', 'listService', function ListController($http, listService) {
 
       var self = this;
+
+      self.showTasks = listService.getTasks;
 
       self.getLists = function(){
         $http.get('//172.16.1.70:5000/lists').then(function(response) {
@@ -18,6 +20,10 @@ angular.
 
       self.getLists();
 
+      self.showAddListModal = function(){
+        $('#addList').modal('show');
+      };
+
       self.addList = function (){
 
         var newList = {
@@ -26,6 +32,7 @@ angular.
 
         $http.post('//172.16.1.70:5000/lists', JSON.stringify(newList)).then(function(response){
           self.getLists();
+          $('#addList').modal('hide');
           self.listText = '';
         }, function(response){
           alert('There was an error creating your list');
@@ -35,24 +42,19 @@ angular.
       self.deleteList = function(listId, listName){
 
         if(confirm('Are you sure you want to delete your ' + listName + " list?")){
-
           $http.delete('//172.16.1.70:5000/lists/' + listId).then(function(response){
               self.getLists();
             }, function(response){
               alert('error deleting list');
           });
-
         }
 
       };
 
       self.editList = function(listId, listName){
-          //update hidden field with listId
           self.listId = listId;
-
           //show modal
           $('#editList').modal('show');
-
       };
 
       self.saveList = function(){
@@ -74,7 +76,7 @@ angular.
         else{
           alert('List Name cannot be empty');
         }
-      }
+      };
 
     }]
 
