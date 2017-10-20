@@ -1,8 +1,10 @@
-<h2>Task Lists</h2>
 <div>
   <ul class="list-group">
+    <li class="list-group-item">
+      <a ng-click="$ctrl.showAddListModal()"><i class="fa fa-plus" aria-hidden="true"></i> add a new list</a>
+    </li>
     <li class="list-group-item" ng-repeat="list in $ctrl.lists">
-      <a ng-href="/lists/{{list.id}}">{{list.name}}</a>
+      <a ng-click="$ctrl.showTasks(list.id)">{{list.name}}</a>
       <div class="btn-group pull-right">
       <button type="button" class="btn btn-sm btn-default" ng-click="$ctrl.editList(list.id, list.name)">
         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -13,17 +15,35 @@
     </div>
     </li>
   </ul>
+
 </div>
 
-<form ng-submit="$ctrl.addList()">
-  <div class="input-group">
-    <input type="text" ng-model="$ctrl.listText"  size="30" placeholder="add new list here" class="form-control">
-    <span class="input-group-btn">
-      <input class="btn btn-primary" type="submit" value="+add">
-    </span>
+<!-- ADD LIST MODAL -->
+<div class="modal" id="addList" tabindex="-1">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add List</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="control-label">List Name</label>
+          <input type="text" ng-model="$ctrl.listText"  size="30" class="form-control">
+        </div>
+        <input type="hidden" ng-model="$ctrl.listId">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="$ctrl.addList()">Save</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
-</form>
+</div>
 
+<!-- EDIT LIST MODAL -->
 <div class="modal" id="editList" tabindex="-1">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
