@@ -1,7 +1,6 @@
 # task-web
 
-The task web repo provides an http server and the front-end angular js task web app in a Docker
-container.
+This repo contains an Angular JS implementation of the task client application.  A `Dockerfile` is included to provide containerization for development and production deployments.
 
 # Getting Started
 
