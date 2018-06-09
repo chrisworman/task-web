@@ -17,7 +17,7 @@ function build_docker_images {
 
 function start_http_container {
   echo "> Starting http server container ..."
-  docker run --name task-web-dev -p 80:80 -d task-web &&
+  docker run -v `pwd`:/usr/share/nginx/html --name task-web-dev -p 80:80 -d task-web &&
   echo "> task-web should be listening on http://localhost:80/"
   return 0
 }
