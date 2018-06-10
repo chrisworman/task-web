@@ -2,7 +2,7 @@ angular
   .module('tasks')
   .component('tasks', {
     templateUrl: 'tasks/tasks.template.html',
-    controller: ['$http', 'listService', function TasksController($http, listService){
+    controller: ['$http', 'listService' , function TasksController($http, listService){
 
       var self = this;
       var tasksResourceURL = '//localhost:8081/tasks';
@@ -66,7 +66,7 @@ angular
           var task = {
             list_id : self.listId,
             text: self.taskEditText,
-            marked: false     
+            marked: false
           };
 
           $http.put(tasksResourceURL + '/' + self.taskId, JSON.stringify(task)).then(function(response){
@@ -83,6 +83,27 @@ angular
         }
 
       };
+
+      self.updateTask = function(task){
+        $http.put(tasksResourceURL + '/' + task.id, JSON.stringify(task)).then(function(response){
+          self.getTasks();
+          self.taskEditText = '';
+          $('#editTask').modal('hide');
+        }, function(response){
+          //error
+          alert('Error occurred trying to update this task');
+        });
+      }
+
+      self.taskClicked = function(taskId){
+        var task = self.tasks.filter(function(t){
+          return t.id == taskId;
+        })[0];
+
+        task.marked = true;
+        self.updateTask(task);
+
+      }
 
     }]
   });
