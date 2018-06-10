@@ -2,7 +2,7 @@
 
   <!-- Add List Button -->
   <button type="button" class="btn btn-info btn-round pull-right" ng-click="$ctrl.showAddListModal()">
-    <i class="fa fa-plus" aria-hidden="true"></i> add a new list
+    <i class="fas fa-plus" aria-hidden="true"></i> add a new list
   </button>
   <div class="clearfix"></div>
 
@@ -13,10 +13,10 @@
       <a ng-click="$ctrl.showTasks(list.id)">{{list.name}}</a>
       <div class="btn-group pull-right">
       <button type="button" class="btn btn-sm btn-default" ng-click="$ctrl.editList(list.id, list.name)">
-        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
       </button>
       <button type="button" class="btn btn-sm btn-default" ng-click="$ctrl.deleteList(list.id, list.name)">
-        <i class="fa fa-times" aria-hidden="true"></i>
+        <i class="fas fa-times" aria-hidden="true"></i>
       </button>
     </div>
     </li>

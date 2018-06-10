@@ -1,33 +1,5 @@
-.done-true {
-  text-decoration: line-through;
-  color: grey;
-}
-
-.card{
-  margin-top: 10px;
-  margin-bottom: 25px;
-}
-
-body{
-  background-color: blue;
-}
-
-li:hover{
-  background-color: #f3f3f3;
-}
-
 .alert{
   margin-top: 15px;
-}
-
-.list-pane{
-  width: 250px;
-  border-right: 1px solid #dbdbdb;
-}
-
-li.list-group-item:first-child {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
 }
 
 nav{
@@ -38,12 +10,12 @@ nav{
   color: #f3f3f3;
 }
 
-a:hover{
-  cursor: pointer;
+a.navbar-brand:hover{
+  color: #f3f3f3;
 }
 
-a:not([href]):not([tabindex]){
-  color: #007bff !important;
+a:hover, .btn{
+  cursor: pointer;
 }
 
 h2{
@@ -64,19 +36,40 @@ button.btn-round{
   box-shadow: 0px 5px #a8dbcb;
 }
 
+/*** List Side Bar ***/
+
 .list-pane li.list-group-item:first-child {
-    border-top-right-radius: .7rem;
+  border-top-right-radius: 1.7rem;
+}
+
+.list-pane{
+  width: 250px;
+  border-right: 1px solid #dbdbdb;
 }
 
 .list-pane .list-group-item:last-child {
-    border-bottom-right-radius: .7rem;
-    border-bottom-left-radius: 0;
+  border-bottom-right-radius: 1.7rem;
+  border-bottom-left-radius: 0;
 }
 
 .list-pane li {
-    background-color: #ffae00;
-    border-radius: 0 .7rem .7rem 0;
-    margin: 5px 10px 5px 0px;
-    border: 2px solid #ff8c11;
-    border-left: none;
+  background-color: #EEEEFF;
+  border-radius: 0 1.7rem 1.7rem 0;
+  margin: 5px 10px 5px 0px;
+  border-left: none;
 }
+
+.list-pane .btn-group button.btn {
+  background-color: transparent;
+}
+
+.list-pane .list-group-item{
+  padding: .5rem 1.25rem;
+}
+
+.list-pane li.list-group-item:hover {
+    background-color: #9FA2B2;
+    color: #fff !important;
+}
+
+/*** Other ***/
