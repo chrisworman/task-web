@@ -23,7 +23,8 @@ angular
 
         var newTask = {
           text : this.taskText,
-          list_id : this.listId
+          list_id : this.listId,
+          marked: false,
         };
 
         $http.post(tasksResourceURL, JSON.stringify(newTask)).then(function(response){
@@ -65,7 +66,7 @@ angular
           var task = {
             list_id : self.listId,
             text: self.taskEditText,
-            marked: false     //added temporarily until db fix can be added
+            marked: false     
           };
 
           $http.put(tasksResourceURL + '/' + self.taskId, JSON.stringify(task)).then(function(response){
