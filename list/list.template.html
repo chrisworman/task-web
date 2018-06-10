@@ -1,8 +1,14 @@
 <div>
+
+  <!-- Add List Button -->
+  <button type="button" class="btn btn-info btn-round pull-right" ng-click="$ctrl.showAddListModal()">
+    <i class="fa fa-plus" aria-hidden="true"></i> add a new list
+  </button>
+  <div class="clearfix"></div>
+
+
+  <!-- List of Lists -->
   <ul class="list-group">
-    <li class="list-group-item">
-      <a ng-click="$ctrl.showAddListModal()"><i class="fa fa-plus" aria-hidden="true"></i> add a new list</a>
-    </li>
     <li class="list-group-item" ng-repeat="list in $ctrl.lists">
       <a ng-click="$ctrl.showTasks(list.id)">{{list.name}}</a>
       <div class="btn-group pull-right">
