@@ -21,7 +21,7 @@
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="task in $ctrl.tasks">
       <label class="checkbox">
-        <input type="checkbox">
+        <input type="checkbox" ng-checked={{task.marked}} ng-click="$ctrl.taskClicked(task.id)">
         <span>{{task.text}}</span>
       </label>
       <div class="btn-group pull-right">
