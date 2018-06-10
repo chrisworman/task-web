@@ -44,6 +44,7 @@ angular.
         if(confirm('Are you sure you want to delete your ' + listName + " list?")){
           $http.delete(listResourceURL + '/' + listId).then(function(response){
               self.getLists();
+              //TODO : get lists component to clear or refresh/hide it?
             }, function(response){
               alert('error deleting list');
           });
@@ -62,10 +63,11 @@ angular.
         if(self.listEditText){
 
           var updatedList = {
-            name : self.listEditText
+            name : self.listEditText,
+            id: self.listId,
           };
 
-          $http.put(listResourceURL + self.listId, JSON.stringify(updatedList)).then(function(response){
+          $http.put(listResourceURL + '/' + self.listId, JSON.stringify(updatedList)).then(function(response){
             self.getLists();
             self.listEditText = '';
             $('#editList').modal('hide');
