@@ -24,10 +24,20 @@ $ ./dev.sh build
 $ ./dev.sh start
 ```
 
+At this point, you should be able to open up a browser and visit `http://localhost/` and be able to view an interact the task-web
+project.
+
 ## Stop your container
 This command not only stops your container, but removes it as well.
 ```
 $ ./dev.sh stop
+```
+
+## Clean
+This command stops and removes your container.  It also removes it's built image.  Use this shortcut command to "clean"
+your local docker environment for you.    
+```
+$ ./dev.sh clean
 ```
 
 ## Print logs from your container
