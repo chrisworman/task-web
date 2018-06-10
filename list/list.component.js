@@ -5,11 +5,11 @@ angular.
     controller: [ '$http', 'listService', function ListController($http, listService) {
 
       var self = this;
-
+      var listResourceURL = '//localhost:8081/lists';
       self.showTasks = listService.getTasks;
 
       self.getLists = function(){
-        $http.get('//172.16.1.70:5000/lists').then(function(response) {
+        $http.get(listResourceURL).then(function(response) {
           console.log('web api /lists called');
           self.lists = response.data;
         }, function(response){
@@ -30,7 +30,7 @@ angular.
           name : self.listText
         };
 
-        $http.post('//172.16.1.70:5000/lists', JSON.stringify(newList)).then(function(response){
+        $http.post(listResourceURL, JSON.stringify(newList)).then(function(response){
           self.getLists();
           $('#addList').modal('hide');
           self.listText = '';
@@ -42,7 +42,7 @@ angular.
       self.deleteList = function(listId, listName){
 
         if(confirm('Are you sure you want to delete your ' + listName + " list?")){
-          $http.delete('//172.16.1.70:5000/lists/' + listId).then(function(response){
+          $http.delete(listResourceURL + '/' + listId).then(function(response){
               self.getLists();
             }, function(response){
               alert('error deleting list');
@@ -65,7 +65,7 @@ angular.
             name : self.listEditText
           };
 
-          $http.put('//172.16.1.70:5000/lists/' + self.listId, JSON.stringify(updatedList)).then(function(response){
+          $http.put(listResourceURL + self.listId, JSON.stringify(updatedList)).then(function(response){
             self.getLists();
             self.listEditText = '';
             $('#editList').modal('hide');

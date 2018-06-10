@@ -5,6 +5,7 @@ angular
     controller: ['$http', 'listService', function TasksController($http, listService){
 
       var self = this;
+      var tasksResourceURL = '//localhost:8081/tasks';
 
       listService.onListClicked(function(listId){
         self.listId = listId;
@@ -12,7 +13,7 @@ angular
       });
 
       self.getTasks = function(){
-        $http.get('//172.16.1.70:5000/tasks?list_id=' + self.listId).then(function(response) {
+        $http.get(tasksResourceURL + '?list_id=' + self.listId).then(function(response) {
           console.log('web api /tasks?list_id= called');
           self.tasks = response.data;
         });
@@ -25,7 +26,7 @@ angular
           list_id : this.listId
         };
 
-        $http.post('//172.16.1.70:5000/tasks', JSON.stringify(newTask)).then(function(response){
+        $http.post(tasksResourceURL, JSON.stringify(newTask)).then(function(response){
           self.getTasks();
           self.taskText = '';
         }, function(response){
@@ -38,7 +39,7 @@ angular
         if(confirm('Are you sure you wish to delete this task?')){
 
           //proceed to delete task
-          $http.delete('//172.16.1.70:5000/tasks/' + taskId).then(function(response){
+          $http.delete(tasksResourceURL + '/' + taskId).then(function(response){
             self.getTasks();
           }, function(response){
             //error
@@ -64,10 +65,10 @@ angular
           var task = {
             list_id : self.listId,
             text: self.taskEditText,
-            marked: false     //added temporarily until db fix can be added 
+            marked: false     //added temporarily until db fix can be added
           };
 
-          $http.put('//172.16.1.70:5000/tasks/' + self.taskId, JSON.stringify(task)).then(function(response){
+          $http.put(tasksResourceURL + '/' + self.taskId, JSON.stringify(task)).then(function(response){
             self.getTasks();
             self.taskEditText = '';
             $('#editTask').modal('hide');
